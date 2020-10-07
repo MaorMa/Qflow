@@ -1,0 +1,36 @@
+<div id="add-new-customer">
+  <p>שם לקוח</p>
+  <input type="text" #customerName>
+  <input type="button" value="הכנס לתור" (click)="insertToQueue(customerName.value);customerName.value =''">
+</div>
+<hr>
+<div id="current-customer">
+  <input id="nextCustButton" type="button" value="קרא להבא בתור" (click)="callNextCustomer()"><br>
+  <div>
+    <p>בשירות:</p>
+    <table>
+      <tr>
+        <td>{{currentCustomer.id !==0 ? currentCustomer.id : ""}}</td>
+        <td>{{currentCustomer.id !==0 ? currentCustomer.name : ""}}</td>
+        <td>{{currentCustomer.id !==0 ? currentCustomer.enterTime : "" }}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<hr>
+<div id="customers-waiting">
+  <p>רשימת ממתינים:</p>
+  <table>
+    <tr>
+      <th>מספר תור</th>
+      <th>שם לקוח</th>
+      <th>שעת כניסה לתור</th>
+    </tr>
+    <tr *ngFor="let customer of customerList">
+      <td>{{customer.id}}</td>
+      <td>{{customer.name}}</td>
+      <td>{{customer.enterTime | date: 'shortTime'}}</td>
+    </tr>
+  </table>
+
+</div>
